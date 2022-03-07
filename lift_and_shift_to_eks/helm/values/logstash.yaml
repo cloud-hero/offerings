@@ -31,11 +31,12 @@ logstashPipeline:
 
   output {
     elasticsearch {
-      hosts => "${ELASTICSEARCH_HOST}"
+      hosts => "https://${ELASTICSEARCH_HOST}:443"
       user => "${ELASTICSEARCH_USER}"
       password => "${ELASTICSEARCH_PASSWORD}"
       manage_template => false
       index => "%{[@metadata][target_index]}"
+      ssl_certificate_verification => false
     }
   }
 
