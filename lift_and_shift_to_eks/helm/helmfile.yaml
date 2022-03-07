@@ -30,3 +30,10 @@ releases:
       value: "ELASTICSEARCH_PASSWORD"
     - name: extraEnvs[2].value
       value: ref+awsssm://blackbelt/eks_logging/admin_password
+  - name: filebeat
+    namespace: logging
+    labels:
+      namespace: logging
+    chart: elastic/filebeat
+    values:
+      - "values/filebeat.yaml"
