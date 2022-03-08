@@ -9,7 +9,6 @@ replicas: 3
 logstashConfig:
   logstash.yml: |
     http.host: "0.0.0.0"
-    xpack.monitoring.elasticsearch.hosts: [ "https://${ELASTICSEARCH_HOST}:443" ]
   log4j2.properties: |
     logger.elasticsearchoutput.name = logstash.outputs.elasticsearch
     logger.elasticsearchoutput.level = error
@@ -30,7 +29,7 @@ logstashPipeline:
   }
 
   output {
-    elasticsearch {
+    opensearch {
       hosts => "https://${ELASTICSEARCH_HOST}:443"
       user => "${ELASTICSEARCH_USER}"
       password => "${ELASTICSEARCH_PASSWORD}"
@@ -85,8 +84,8 @@ hostAliases: []
 #  - "foo.local"
 #  - "bar.local"
 
-image: "docker.elastic.co/logstash/logstash"
-imageTag: "8.0.0-SNAPSHOT"
+image: "opensearchproject/logstash-oss-with-opensearch-output-plugin"
+imageTag: "7.13.2"
 imagePullPolicy: "IfNotPresent"
 imagePullSecrets: []
 
