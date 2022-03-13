@@ -25,8 +25,6 @@ serviceAccounts:
   server:
       create: true
       name: "amp-iamproxy-ingest-service-account"
-      annotations:
-          eks.amazonaws.com/role-arn: "arn:aws:iam::687398153695:role/amp-iamproxy-ingest-role"
 
 alertmanager:
   ## If false, alertmanager will not be installed
