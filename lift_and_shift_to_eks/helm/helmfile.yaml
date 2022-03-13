@@ -10,6 +10,7 @@ releases:
     labels:
       namespace: monitoring
     chart: prometheus-community/prometheus-node-exporter
+
   - name: logstash
     namespace: logging
     labels:
@@ -30,6 +31,7 @@ releases:
       value: "ELASTICSEARCH_PASSWORD"
     - name: extraEnvs[2].value
       value: ref+awsssm://blackbelt/eks_logging/admin_password
+
   - name: filebeat
     namespace: logging
     labels:
@@ -37,6 +39,7 @@ releases:
     chart: elastic/filebeat
     values:
       - "values/filebeat.yaml"
+
   - name: prometheus
     namespace: monitoring
     labels:
@@ -51,3 +54,31 @@ releases:
       value: eu-central-1
     - name: 'serviceAccounts.server.annotations.eks\.amazonaws\.com/role-arn'
       value: ref+awsssm://blackbelt/eks_monitoring/role_arn
+
+  - name: grafana
+    namespace: monitoring
+    chart:  grafana/grafana
+    labels:
+      role: display
+      namespace: monitoring
+    values:
+      - "values/grafana.yaml"
+    set:
+      - name: adminPassword
+        value: ref+awsssm://blackbelt/eks_monitoring/grafana_password
+      - name: 'grafana\.ini.database.type'
+        value: mysql
+      - name: 'grafana\.ini.database.url'
+        value: mysql://root:ref+awsssm://blackbelt/eks_monitoring/grafana_db_password+@mariadb:3306/grafana
+
+  - name: mariadb
+    namespace: monitoring
+    chart:  bitnami/mariadb
+    labels:
+      role: persistence
+      namespace: monitoring
+    values:
+      - "values/mariadb.yaml"
+    set:
+      - name: auth.rootPassword
+        value: ref+awsssm://blackbelt/eks_monitoring/grafana_db_password
