@@ -44,3 +44,8 @@ releases:
     chart: prometheus-community/prometheus
     values:
       - "values/prometheus.yaml"
+    set:
+    - name: server.remoteWrite[0].url
+      value: ref+awsssm://blackbelt/eks_monitoring/url
+    - name: server.remoteWrite[0].sigv4.region
+      value: eu-central-1
