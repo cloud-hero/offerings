@@ -9,12 +9,6 @@ repositories:
   url: https://charts.bitnami.com/bitnami
 
 releases:
-  - name: node-exporter
-    namespace: monitoring
-    labels:
-      namespace: monitoring
-    chart: prometheus-community/prometheus-node-exporter
-
   - name: logstash
     namespace: logging
     labels:
