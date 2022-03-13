@@ -49,5 +49,5 @@ releases:
       value: ref+awsssm://blackbelt/eks_monitoring/endpoint
     - name: server.remoteWrite[0].sigv4.region
       value: eu-central-1
-    - name: serviceAccounts.server.annotations.eks.amazonaws.com/role-arn
+    - name: serviceAccounts.server.annotations.eks.amazonaws.com\/role-arn
       value: ref+awsssm://blackbelt/eks_monitoring/role_arn
