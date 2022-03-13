@@ -37,3 +37,10 @@ releases:
     chart: elastic/filebeat
     values:
       - "values/filebeat.yaml"
+  - name: prometheus
+    namespace: monitoring
+    labels:
+      namespace: monitoring
+    chart: prometheus-community/prometheus
+    values:
+      - "values/prometheus.yaml"
