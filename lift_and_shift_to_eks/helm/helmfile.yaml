@@ -7,8 +7,23 @@ repositories:
   url: https://grafana.github.io/helm-charts
 - name: bitnami
   url: https://charts.bitnami.com/bitnami
+- name: incubator
+  url: http://storage.googleapis.com/kubernetes-charts-incubator
 
 releases:
+  - name: alb-ingress-controller
+    namespace: kube-system
+    labels:
+      namespace: kube-system
+    chart: incubator/aws-alb-ingress-controller
+    set:
+    - name: autoDiscoverAwsRegion
+      value: true
+    - name: autoDiscoverAwsVpcID
+      value: true
+    - name: clusterName
+      value: blackbelt-eks
+
   - name: logstash
     namespace: logging
     labels:
