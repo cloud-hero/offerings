@@ -21,7 +21,7 @@ releases:
       value: true
     - name: serviceAccount.name
       value: aws-load-balancer-controller
-    - name: 'serviceAccounts.annotations.eks\.amazonaws\.com/role-arn'
+    - name: 'serviceAccount.annotations.eks\.amazonaws\.com/role-arn'
       value: ref+awsssm://blackbelt/eks_utils/alb_controller_role_arn
     - name: clusterName
       value: blackbelt-eks
