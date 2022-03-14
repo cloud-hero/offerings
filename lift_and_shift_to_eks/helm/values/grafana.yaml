@@ -187,7 +187,6 @@ ingress:
   ingressClassName: alb
   # Values can be templated
   annotations:
-    kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/group.name: blackbelt-tooling
     alb.ingress.kubernetes.io/scheme: internal
   labels: {}
