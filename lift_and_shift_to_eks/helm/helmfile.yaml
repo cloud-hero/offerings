@@ -22,7 +22,7 @@ releases:
     - name: serviceAccount.name
       value: aws-load-balancer-controller
     - name: 'serviceAccount.annotations.eks\.amazonaws\.com/role-arn'
-      value: ref+awsssm://blackbelt/eks_utils/alb_controller_role_arn
+      value: ref+awsssm://blackbelt/blackbelt-eks_utils/alb_controller_role_arn
     - name: clusterName
       value: blackbelt-eks
 
@@ -37,15 +37,15 @@ releases:
     - name: extraEnvs[0].name
       value: "ELASTICSEARCH_HOST"
     - name: extraEnvs[0].value
-      value: ref+awsssm://blackbelt/eks_logging/endpoint
+      value: ref+awsssm://blackbelt/eks-logging-elasticsearch/endpoint
     - name: extraEnvs[1].name
       value: "ELASTICSEARCH_USER"
     - name: extraEnvs[1].value
-      value: ref+awsssm://blackbelt/eks_logging/admin_username
+      value: ref+awsssm://blackbelt/eks-logging-elasticsearch/admin_username
     - name: extraEnvs[2].name
       value: "ELASTICSEARCH_PASSWORD"
     - name: extraEnvs[2].value
-      value: ref+awsssm://blackbelt/eks_logging/admin_password
+      value: ref+awsssm://blackbelt/eks-logging-elasticsearch/admin_password
 
   - name: filebeat
     namespace: logging
@@ -64,11 +64,11 @@ releases:
       - "values/prometheus.yaml"
     set:
     - name: server.remoteWrite[0].url
-      value: ref+awsssm://blackbelt/eks_monitoring/endpoint
+      value: ref+awsssm://blackbelt/eks-monitoring/endpoint
     - name: server.remoteWrite[0].sigv4.region
       value: eu-central-1
     - name: 'serviceAccounts.server.annotations.eks\.amazonaws\.com/role-arn'
-      value: ref+awsssm://blackbelt/eks_monitoring/role_arn
+      value: ref+awsssm://blackbelt/eks-monitoring/role_arn
 
   - name: grafana
     namespace: monitoring
@@ -80,11 +80,11 @@ releases:
       - "values/grafana.yaml"
     set:
       - name: adminPassword
-        value: ref+awsssm://blackbelt/eks_monitoring/grafana_password
+        value: ref+awsssm://blackbelt/eks-monitoring/grafana_password
       - name: 'grafana\.ini.database.type'
         value: mysql
       - name: 'grafana\.ini.database.url'
-        value: mysql://root:ref+awsssm://blackbelt/eks_monitoring/grafana_db_password+@mariadb:3306/grafana
+        value: mysql://root:ref+awsssm://blackbelt/eks-monitoring/grafana_db_password+@mariadb:3306/grafana
 
   - name: mariadb
     namespace: monitoring
