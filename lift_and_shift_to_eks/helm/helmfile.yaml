@@ -96,4 +96,4 @@ releases:
       - "values/mariadb.yaml"
     set:
       - name: auth.rootPassword
-        value: ref+awsssm://blackbelt/eks_monitoring/grafana_db_password
+        value: ref+awsssm://blackbelt/eks-monitoring/grafana_db_password
