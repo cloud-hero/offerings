@@ -9,7 +9,9 @@ repositories:
   url: https://charts.bitnami.com/bitnami
 - name: eks
   url: https://aws.github.io/eks-charts
-
+- name: falcosecurity
+  url: https://falcosecurity.github.io/charts
+  
 releases:
   - name: alb-ingress-controller
     namespace: kube-system
