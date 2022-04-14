@@ -311,7 +311,7 @@ server:
   # -- Server name string
   name: server
   # -- Service type for server pods
-  serviceType: ClusterIP
+  serviceType: NodePort
   # -- Service port for server
   servicePort: 2746
   # -- Service node port
