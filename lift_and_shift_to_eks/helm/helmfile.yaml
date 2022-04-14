@@ -97,3 +97,26 @@ releases:
     set:
       - name: auth.rootPassword
         value: ref+awsssm://blackbelt/eks-monitoring/grafana_db_password
+
+  - name: falco
+    namespace: security
+    labels:
+      namespace: security
+    chart: falcosecurity/falco
+    values:
+      - "values/falco.yaml"
+    set:
+      - name: falcosidekick.config.elasticsearch.hostport
+        value: ref+awsssm://blackbelt/eks-logging-elasticsearch/endpoint
+      - name: falcosidekick.config.elasticsearch.username
+        value: ref+awsssm://blackbelt/eks-logging-elasticsearch/admin_username
+      - name: falcosidekick.config.elasticsearch.password
+        value: ref+awsssm://blackbelt/eks-logging-elasticsearch/admin_password
+
+  - name: falco-exporter
+    namespace: security
+    labels:
+      namespace: security
+    chart: falcosecurity/falco-exporter
+    values:
+      - "values/falco-exporter.yaml"
