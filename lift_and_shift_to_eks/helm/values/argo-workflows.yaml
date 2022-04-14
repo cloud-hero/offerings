@@ -389,7 +389,9 @@ server:
     # -- Enable an ingress resource
     enabled: true
     # -- Additional ingress annotations
-    annotations: {}
+    annotations:
+        alb.ingress.kubernetes.io/group.name: blackbelt-tooling
+        alb.ingress.kubernetes.io/scheme: internal
     # -- Additional ingress labels
     labels: {}
     # -- Defines which ingress controller will implement the resource
