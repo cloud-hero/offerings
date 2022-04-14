@@ -11,6 +11,8 @@ repositories:
   url: https://aws.github.io/eks-charts
 - name: falcosecurity
   url: https://falcosecurity.github.io/charts
+- name: argo
+  url: https://argoproj.github.io/argo-helm
 
 releases:
   - name: alb-ingress-controller
@@ -122,3 +124,11 @@ releases:
     chart: falcosecurity/falco-exporter
     values:
       - "values/falco-exporter.yaml"
+
+  - name: argo-workflows
+    namespace: cicd
+    labels:
+      namespace: cicd
+    chart: argo/argo-workflows
+    values:
+      - "values/argo-workflows.yaml"
