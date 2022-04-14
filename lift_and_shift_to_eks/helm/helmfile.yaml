@@ -11,7 +11,7 @@ repositories:
   url: https://aws.github.io/eks-charts
 - name: falcosecurity
   url: https://falcosecurity.github.io/charts
-  
+
 releases:
   - name: alb-ingress-controller
     namespace: kube-system
@@ -109,7 +109,7 @@ releases:
       - "values/falco.yaml"
     set:
       - name: falcosidekick.config.elasticsearch.hostport
-        value: ref+awsssm://blackbelt/eks-logging-elasticsearch/endpoint
+        value: https://ref+awsssm://blackbelt/eks-logging-elasticsearch/endpoint+:443
       - name: falcosidekick.config.elasticsearch.username
         value: ref+awsssm://blackbelt/eks-logging-elasticsearch/admin_username
       - name: falcosidekick.config.elasticsearch.password
