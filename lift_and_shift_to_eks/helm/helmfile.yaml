@@ -20,6 +20,7 @@ releases:
     labels:
       namespace: kube-system
     chart: eks/aws-load-balancer-controller
+    version: 1.4.1
     set:
     - name: serviceAccount.create
       value: true
@@ -37,6 +38,7 @@ releases:
     chart: elastic/logstash
     values:
       - "values/logstash.yaml"
+    version: 7.17.1
     set:
     - name: extraEnvs[0].name
       value: "ELASTICSEARCH_HOST"
@@ -56,6 +58,7 @@ releases:
     labels:
       namespace: logging
     chart: elastic/filebeat
+    version: 7.17.1
     values:
       - "values/filebeat.yaml"
 
@@ -66,6 +69,7 @@ releases:
     chart: prometheus-community/prometheus
     values:
       - "values/prometheus.yaml"
+    version: 15.8.5
     set:
     - name: server.remoteWrite[0].url
       value: ref+awsssm://blackbelt/eks-monitoring/endpoint
@@ -82,6 +86,7 @@ releases:
       namespace: monitoring
     values:
       - "values/grafana.yaml"
+    version: 6.26.3
     set:
       - name: adminPassword
         value: ref+awsssm://blackbelt/eks-monitoring/grafana_password
@@ -98,6 +103,7 @@ releases:
       namespace: monitoring
     values:
       - "values/mariadb.yaml"
+    version: 10.5.1
     set:
       - name: auth.rootPassword
         value: ref+awsssm://blackbelt/eks-monitoring/grafana_db_password
@@ -109,6 +115,7 @@ releases:
     chart: falcosecurity/falco
     values:
       - "values/falco.yaml"
+    version: 1.17.4
     set:
       - name: falcosidekick.config.elasticsearch.hostport
         value: https://ref+awsssm://blackbelt/eks-logging-elasticsearch/endpoint+:443
@@ -122,6 +129,7 @@ releases:
     labels:
       namespace: security
     chart: falcosecurity/falco-exporter
+    version: 0.8.0
     values:
       - "values/falco-exporter.yaml"
 
@@ -130,5 +138,6 @@ releases:
     labels:
       namespace: cicd
     chart: argo/argo-workflows
+    version: 0.13.1
     values:
       - "values/argo-workflows.yaml"
